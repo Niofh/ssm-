@@ -54,4 +54,13 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <!--jsp引入公共文件-->
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <!--引入根路径到jsp文件里 ${basePath}获取项目根路径-->
+            <include-prelude>/WEB-INF/jsp/common.jsp</include-prelude>
+        </jsp-property-group>
+    </jsp-config>
+
 </web-app>
