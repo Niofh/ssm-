@@ -12,12 +12,12 @@
     <mvc:annotation-driven/>
 
     <!-- 第二种 对静态资源放行  （比较好） -->
-    <mvc:resources location="/css/" mapping="/css/**"/>
-    <mvc:resources location="/js/" mapping="/js/**"/>
-    <mvc:resources location="/fonts/" mapping="/fonts/**"/>
+    <!--<mvc:resources location="/css/" mapping="/css/**"/>-->
+    <!--<mvc:resources location="/js/" mapping="/js/**"/>-->
+    <!--<mvc:resources location="/fonts/" mapping="/fonts/**"/>-->
 
     <!-- 第一种静态资源默认servlet配置 -->
-    <!--<mvc:default-servlet-handler/>-->
+    <mvc:default-servlet-handler/>
 
     <!-- 配置jsp 显示ViewResolver  -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -31,11 +31,12 @@
     <!--https://www.cnblogs.com/com-itheima-crazyStone/p/6739862.html 教程-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!-- 设置上传文件最大尺寸，单位为B 最大为5M  -->
-        <property name="maxUploadSize" value="5242880" />
+        <property name="maxUploadSize" value="5242880"/>
+        <property name="defaultEncoding" value="utf-8"/>
     </bean>
 
     <!--转换器-->
-    <mvc:annotation-driven conversion-service="conversionService" />
+    <mvc:annotation-driven conversion-service="conversionService"/>
     <!--自定义转换器-->
     <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
         <property name="converters">
@@ -53,11 +54,11 @@
         <!-- 登录拦截器 -->
         <mvc:interceptor>
             <!--拦截所有-->
-            <mvc:mapping path="/**" />
+            <mvc:mapping path="/**"/>
             <!--放开拦截配置-->
-            <mvc:exclude-mapping path="/login" />
-            <mvc:exclude-mapping path="/index" />
-            <bean class="com.oufuhua.interceptor.LoginInterceptor" />
+            <mvc:exclude-mapping path="/login"/>
+            <mvc:exclude-mapping path="/index"/>
+            <bean class="com.oufuhua.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
 
     </mvc:interceptors>
