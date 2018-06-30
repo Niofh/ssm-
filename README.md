@@ -28,3 +28,5 @@ https://www.cnblogs.com/com-itheima-crazyStone/p/6739862.html
         </jsp-property-group>
     </jsp-config>
 ```
+
+##### JSR30验证传递值
