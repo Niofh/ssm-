@@ -29,5 +29,9 @@ https://www.cnblogs.com/com-itheima-crazyStone/p/6739862.html
     </jsp-config>
 ```
 
+<<<<<<< HEAD
 ##### JSR30验证传递值
 https://blog.csdn.net/yangshangwei/article/details/79381009
+=======
+##### JSR30验证传递值
+>>>>>>> ded8dd1578bde33946001af1187184c43aedf622
