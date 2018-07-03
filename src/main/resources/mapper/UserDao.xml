@@ -9,7 +9,7 @@
     </select>
 
     <insert id="addUser" parameterType="User">
-        INSERT INTO  user(username,birthday) value(#{username},#{birthday});
+        INSERT INTO  user(username,birthday,img_name) value(#{username},#{birthday},#{imgName});
     </insert>
 
 </mapper>

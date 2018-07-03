@@ -1,7 +1,7 @@
 package com.oufuhua.service;
 
+import com.oufuhua.dto.UserDto;
 import com.oufuhua.model.User;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -12,5 +12,6 @@ import java.util.List;
  */
 public interface UserServer {
     public List<User> selectAllUser();
-    public void addUser(User user);
+
+    public void addUser(UserDto userDto) throws Exception;
 }

@@ -1,5 +1,6 @@
 package com.oufuhua.controller;
 
+import com.oufuhua.dto.UserDto;
 import com.oufuhua.model.User;
 import com.oufuhua.service.UserServer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,15 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user/add", method = RequestMethod.POST)
-    public void add(User user) {
-        System.out.println(user);
-        userServer.addUser(user);
+    public void add(UserDto userDto) {
+
+        try {
+
+            userServer.addUser(userDto);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

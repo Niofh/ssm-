@@ -13,16 +13,21 @@
         </encoder>
     </appender>
 
+    <!--sql打印-->
+    <logger name="com.oufuhua.dao" level="debug" additivity="false">
+        <appender-ref ref="debug" />
+    </logger>
+
     <!--生成文件日志-->
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${logRoot}/common-server.%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>7</maxHistory>
-        </rollingPolicy>
-        <encoder>
-            <pattern>${pattern}</pattern>
-        </encoder>
-    </appender>
+    <!--<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+            <!--<fileNamePattern>${logRoot}/common-server.%d{yyyy-MM-dd}.log</fileNamePattern>-->
+            <!--<maxHistory>7</maxHistory>-->
+        <!--</rollingPolicy>-->
+        <!--<encoder>-->
+            <!--<pattern>${pattern}</pattern>-->
+        <!--</encoder>-->
+    <!--</appender>-->
 
 
     <root level="DEBUG">

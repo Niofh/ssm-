@@ -11,9 +11,10 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/user/add" method="post">
-    <input type="text" value="" name="username">
-    <input type="text" value="" name="birthday">
+<form action="/user/add" method="post" enctype="multipart/form-data">
+    <input type="text" value="" name="username" placeholder="请填写姓名">
+    <input type="date" value="" name="birthday" placeholder="请选择日期">
+    <input type="file" name="file" >
     <input type="submit" value="提交">
 </form>
 </body>
