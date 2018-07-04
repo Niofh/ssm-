@@ -13,6 +13,31 @@
 ##### mapper 与dao名字要一样，自动映射，实现类不用写
 * mybatis  https://blog.csdn.net/zjf280441589/article/details/50760236
 
+
+##### 对象合并BeanUtils.copyProperties，但是有个缺点null也一起合并进来
+BeanUtils.copyProperties(oldBean,newBean);
+
+解决合并null的方法
+```
+public static String[] getNullPropertyNames (Object source) {
+        final BeanWrapper src = new BeanWrapperImpl(source);
+        java.beans.PropertyDescriptor[] pds = src.getPropertyDescriptors();
+
+        Set<String> emptyNames = new HashSet<String>();
+        for(java.beans.PropertyDescriptor pd : pds) {
+            Object srcValue = src.getPropertyValue(pd.getName());
+            if (srcValue == null) emptyNames.add(pd.getName());
+        }
+        String[] result = new String[emptyNames.size()];
+        return emptyNames.toArray(result);
+    }
+
+    public static void copyPropertiesIgnoreNull(Object src, Object target){
+        BeanUtils.copyProperties(src, target, getNullPropertyNames(src));
+    }
+    
+```
+
 ##### 文件上传 
 https://www.cnblogs.com/com-itheima-crazyStone/p/6739862.html
 

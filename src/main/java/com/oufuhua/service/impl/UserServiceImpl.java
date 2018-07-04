@@ -4,6 +4,7 @@ import com.oufuhua.dao.UserDao;
 import com.oufuhua.dto.UserDto;
 import com.oufuhua.model.User;
 import com.oufuhua.service.UserServer;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -33,8 +34,11 @@ public class UserServiceImpl implements UserServer {
     @Override
     public void addUser(UserDto userDto) throws Exception {
         User user = new User();
-        user.setUsername(userDto.getUsername());
-        user.setBirthday(userDto.getBirthday());
+
+        // 合并对象，但是null也会一起合并
+        BeanUtils.copyProperties(userDto,user);
+
+        System.out.println(user);
 
         if (userDto.getFile() != null && userDto.getFile().getSize() > 0) {
 
