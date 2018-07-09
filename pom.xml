@@ -26,6 +26,9 @@
         <!-- mybatis版本号 -->
         <mybatis.version>3.4.1</mybatis.version>
 
+        <!--log4j版本-->
+        <log4j.version>2.10.0</log4j.version>
+
     </properties>
 
     <dependencies>
@@ -52,11 +55,22 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- 实现slf4j接口并整合 -->
+        <!--Log4j2配置-->
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.2.2</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-web</artifactId>
+            <version>${log4j.version}</version>
         </dependency>
 
         <!-- JSON依赖包 -->
@@ -156,6 +170,11 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>RELEASE</version>
         </dependency>
 
 

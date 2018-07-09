@@ -61,9 +61,17 @@ https://www.cnblogs.com/com-itheima-crazyStone/p/6739862.html
 ##### JSR30验证传递值  
 https://blog.csdn.net/yangshangwei/article/details/79381009
 
-
 #### 解决get中文乱码的问题
 tomcat config/server.xml文件 找到 Connector 添加属性 URIEncoding="UTF-8"
 
 #### mysql一些基础sql
 https://blog.csdn.net/youyou_yo/article/details/48678143
+
+#### idea控制台乱码解决 
+https://www.cnblogs.com/fanlinglong/p/6717515.html
+
+#### log4j2 详细配置
+https://blog.csdn.net/vbirdbest/article/details/71751835
+
+#### log4j2配合mybatis打印sql语句
+https://blog.csdn.net/honghailiang888/article/details/52594014

@@ -32,9 +32,15 @@
         <!-- 注入数据库连接池 -->
         <property name="dataSource" ref="dataSource"/>
         <!-- 扫描model包 使用别名 -->
+
         <property name="typeAliasesPackage" value="com.oufuhua.model;com.oufuhua.vo"/>
+
         <!-- 扫描sql配置文件:mapper需要的xml文件 DAO文件名和mapper文件名相同会自动映射-->
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+
+        <!--配置文件-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+
     </bean>
 
     <!-- 配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中 -->
