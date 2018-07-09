@@ -38,6 +38,10 @@ public static String[] getNullPropertyNames (Object source) {
     
 ```
 
+
+##### @JsonInclude(JsonInclude.Include.NON_NULL) 注解
+bean对象的null值属性不返回出去
+
 ##### 文件上传 
 https://www.cnblogs.com/com-itheima-crazyStone/p/6739862.html
 

@@ -22,21 +22,21 @@ public class UserController {
     @Autowired
     private UserServer userServer;
 
-    @RequestMapping("/user/index")
+    @RequestMapping("/")
     public String index() {
         return "index";
     }
 
     @RequestMapping(value = "/user/add", method = RequestMethod.POST)
-    public void add(UserDto userDto) {
-
+    public String add(UserDto userDto) {
+        System.out.println("哈哈");
         try {
-
             userServer.addUser(userDto);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return "index";
     }
 
 
