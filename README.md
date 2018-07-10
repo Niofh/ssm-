@@ -9,6 +9,7 @@
 * controller 控制层
 * dao 数据库层
 * vo 包装结构
+* task 定时任务的封装
 
 ##### mapper 与dao名字要一样，自动映射，实现类不用写
 * mybatis  https://blog.csdn.net/zjf280441589/article/details/50760236
@@ -75,3 +76,6 @@ https://blog.csdn.net/vbirdbest/article/details/71751835
 
 #### log4j2配合mybatis打印sql语句
 https://blog.csdn.net/honghailiang888/article/details/52594014
+
+#### spring调度任务（定时任务）Task 简单版的Quartz
+https://www.cnblogs.com/hongwz/p/5642497.html
