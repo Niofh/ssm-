@@ -9,6 +9,7 @@
 * controller 控制层
 * dao 数据库层
 * vo 包装结构
+* task 定时任务的封装
 
 ##### mapper 与dao名字要一样，自动映射，实现类不用写
 * mybatis  https://blog.csdn.net/zjf280441589/article/details/50760236
@@ -38,6 +39,10 @@ public static String[] getNullPropertyNames (Object source) {
     
 ```
 
+
+##### @JsonInclude(JsonInclude.Include.NON_NULL) 注解
+bean对象的null值属性不返回出去
+
 ##### 文件上传 
 https://www.cnblogs.com/com-itheima-crazyStone/p/6739862.html
 
@@ -57,9 +62,20 @@ https://www.cnblogs.com/com-itheima-crazyStone/p/6739862.html
 ##### JSR30验证传递值  
 https://blog.csdn.net/yangshangwei/article/details/79381009
 
-
 #### 解决get中文乱码的问题
 tomcat config/server.xml文件 找到 Connector 添加属性 URIEncoding="UTF-8"
 
 #### mysql一些基础sql
 https://blog.csdn.net/youyou_yo/article/details/48678143
+
+#### idea控制台乱码解决 
+https://www.cnblogs.com/fanlinglong/p/6717515.html
+
+#### log4j2 详细配置
+https://blog.csdn.net/vbirdbest/article/details/71751835
+
+#### log4j2配合mybatis打印sql语句
+https://blog.csdn.net/honghailiang888/article/details/52594014
+
+#### spring调度任务（定时任务）Task 简单版的Quartz
+https://www.cnblogs.com/hongwz/p/5642497.html

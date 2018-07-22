@@ -33,6 +33,8 @@
         <!-- 设置上传文件最大尺寸，单位为B 最大为5M  -->
         <property name="maxUploadSize" value="5242880"/>
         <property name="defaultEncoding" value="utf-8"/>
+        <!-- 内存中的最大值 -->
+        <property name="maxInMemorySize" value="40960" />
     </bean>
 
     <!--转换器-->

@@ -1,5 +1,8 @@
 package com.oufuhua.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,7 +10,12 @@ import java.util.Date;
  * @Author: Nicofh
  * @Date: 2018/6/25 17:16
  */
-public class User {
+
+@JsonInclude(JsonInclude.Include.NON_NULL)  // null值属性不返回出去
+public class User implements Serializable{
+
+    private static final long serialVersionUID = -6784872932530367108L;
+
     private Integer id;
     private String username;
     private Date birthday;
