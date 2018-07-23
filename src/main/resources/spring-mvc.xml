@@ -34,7 +34,7 @@
         <property name="maxUploadSize" value="5242880"/>
         <property name="defaultEncoding" value="utf-8"/>
         <!-- 内存中的最大值 -->
-        <property name="maxInMemorySize" value="40960" />
+        <property name="maxInMemorySize" value="40960"/>
     </bean>
 
     <!--转换器-->
@@ -51,6 +51,22 @@
         </property>
     </bean>
 
+
+    <!--国际化-->
+
+    <!-- 存储区域设置信息
+       SessionLocaleResolver类通过一个预定义会话名将区域化信息存储在会话中。
+   -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <!--开头名称为message-->
+        <property name="basename" value="messsage"/>
+        <!-- 如果在国际化资源文件中找不到对应代码的信息，就用这个代码作为名称  -->
+        <property name="useCodeAsDefaultMessage" value="true"/>
+    </bean>
+
+
     <!--全局拦截器-->
     <mvc:interceptors>
         <!-- 登录拦截器 -->
@@ -63,5 +79,13 @@
             <bean class="com.oufuhua.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
 
+        <!--国际化-->
+        <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <!--国际化传递参数为?lang=xxxx-->
+            <property name="paramName" value="lang"/>
+        </bean>
+
     </mvc:interceptors>
+
+
 </beans>

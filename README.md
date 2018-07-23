@@ -79,3 +79,6 @@ https://blog.csdn.net/honghailiang888/article/details/52594014
 
 #### spring调度任务（定时任务）Task 简单版的Quartz
 https://www.cnblogs.com/hongwz/p/5642497.html
+
+#### 国际化语言配置
+https://blog.csdn.net/x_iya/article/details/71335917
