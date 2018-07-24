@@ -81,6 +81,7 @@ https://blog.csdn.net/honghailiang888/article/details/52594014
 https://www.cnblogs.com/hongwz/p/5642497.html
 
 #### 国际化语言配置
-https://blog.csdn.net/x_iya/article/details/71335917
+https://blog.csdn.net/x_iya/article/details/71335917 针对页面
+https://blog.csdn.net/yangshangwei/article/details/77075833  针对controller
 
 #### 分页效果 StudentController
