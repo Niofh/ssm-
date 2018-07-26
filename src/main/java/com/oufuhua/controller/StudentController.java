@@ -63,4 +63,16 @@ public class StudentController {
 
         return studentPager;
     }
+
+    @RequestMapping("/studentListPlug")
+    @ResponseBody
+    public Pager<Student> getStudentPlug(@Param("pageIndex") Integer pageIndex,
+                                         @Param("pageSize") Integer pageSize,
+                                         @Param("name") String name) {
+        pageIndex = pageIndex == null ? 0 : pageIndex;
+        pageSize = pageSize == null ? 10 : pageSize;
+        return  studentServer.selectStudentPlug(pageIndex, pageSize, name);
+    }
+
+
 }

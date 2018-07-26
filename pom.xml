@@ -33,6 +33,16 @@
 
     <dependencies>
 
+
+        <!--mybatis分页插件-->
+        <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.1.4</version>
+        </dependency>
+        <!--mybatis分页插件-->
+
         <!--上传文件整合-->
         <dependency>
             <groupId>commons-fileupload</groupId>
@@ -193,7 +203,12 @@
                         <target>1.8</target>
                     </configuration>
                 </plugin>
+
+
+
             </plugins>
+
+
         </pluginManagement>
     </build>
 </project>

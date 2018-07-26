@@ -5,7 +5,6 @@
 
 <mapper namespace="com.oufuhua.dao.StudentDao">
 
-
     <select id="getStudent" resultMap="StudentMap">
         SELECT * FROM t_student
         <where>
@@ -20,7 +19,7 @@
     </select>
 
     <select id="getStudentNumber" resultType="int">
-      SELECT count(*)  from t_student
+        SELECT count(*) from t_student
         <where>
             <if test="name!=null and name!=''">
                 stu_name like "%"#{name}"%"
@@ -28,6 +27,15 @@
         </where>
     </select>
 
+    <!--用插件的分页-->
+    <select id="selectStudentPlug" resultMap="StudentMap">
+        SELECT * from t_student
+        <where>
+            <if test="name!=null and name!=''">
+                stu_name like "%"#{name}"%"
+            </if>
+        </where>
+    </select>
 
     <resultMap id="StudentMap" type="Student">
         <!--如果属性值相同，可以默认不赋值，但是用到关联一定要写全-->

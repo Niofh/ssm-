@@ -32,4 +32,12 @@ public interface StudentDao {
      */
     public Integer getStudentNumber(@Param("name") String name);
 
+    /**
+     * 使用插件的分页，只需要传递搜索参数就可以
+     *
+     * @param name 学生名称
+     * @return 学生列表
+     */
+    public List<Student> selectStudentPlug(@Param("name") String name);
+
 }
