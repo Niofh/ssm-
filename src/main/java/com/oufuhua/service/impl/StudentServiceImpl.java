@@ -26,7 +26,7 @@ public class StudentServiceImpl implements StudentServer {
     }
 
     @Override
-    public Integer getStudentNumber() {
-        return studentDao.getStudentNumber();
+    public Integer getStudentNumber(String name) {
+        return studentDao.getStudentNumber(name);
     }
 }

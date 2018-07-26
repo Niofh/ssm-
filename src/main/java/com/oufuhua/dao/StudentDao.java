@@ -30,6 +30,6 @@ public interface StudentDao {
      *
      * @return 学生的数量
      */
-    public Integer getStudentNumber();
+    public Integer getStudentNumber(@Param("name") String name);
 
 }

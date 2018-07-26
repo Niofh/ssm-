@@ -17,14 +17,18 @@ public class StudentController {
     @Autowired
     private StudentServer studentServer;
 
-    @RequestMapping("/student")
+    @RequestMapping("/studentList")
     @ResponseBody
     public Pager<Student> getStudent(@Param("pageIndex") Integer pageIndex,
                                      @Param("pageSize") Integer pageSize,
                                      @Param("name") String name) {
 
+        return getPager(pageIndex * pageSize, pageSize, name);
+    }
 
-        return getPager(pageIndex, pageSize, name);
+    @RequestMapping("/student")
+    public String getStudent() {
+        return "student";
     }
 
 
@@ -37,14 +41,15 @@ public class StudentController {
      * @return
      */
     private Pager<Student> getPager(Integer pageIndex, Integer pageSize, String name) {
+
         // 获取总数量
-        Integer studentNumber = studentServer.getStudentNumber();
+        Integer studentNumber = studentServer.getStudentNumber(name);
 
         // 获取条件后的学生列表
         List<Student> student = studentServer.getStudent(pageIndex, pageSize, name);
 
         Pager<Student> studentPager = new Pager<>();
-        pageIndex = (pageIndex - 1) * pageSize;
+        System.out.println(pageIndex);
 
         studentPager.setTotalRecord(studentNumber);
         studentPager.setDataList(student);
@@ -52,7 +57,7 @@ public class StudentController {
         studentPager.setPageSize(pageSize);
 
         // 因为3/10无限循环小数，先要转化double才能做其他计算
-        double totalPage = Math.ceil((double)studentNumber / pageSize);
+        double totalPage = Math.ceil((double) studentNumber / pageSize);
 
         studentPager.setTotalPage((int) totalPage);
 

@@ -16,5 +16,5 @@ public interface StudentServer {
      *
      * @return 学生的数量
      */
-    public Integer getStudentNumber();
+    public Integer getStudentNumber(String name);
 }

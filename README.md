@@ -85,3 +85,6 @@ https://blog.csdn.net/x_iya/article/details/71335917 针对页面
 https://blog.csdn.net/yangshangwei/article/details/77075833  针对controller
 
 #### 分页效果 StudentController
+
+####m mybatis教程(七) 分页教程
+https://blog.csdn.net/yuchao2015/article/details/55001182

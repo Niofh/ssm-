@@ -20,7 +20,12 @@
     </select>
 
     <select id="getStudentNumber" resultType="int">
-      SELECT count(*)  from t_student;
+      SELECT count(*)  from t_student
+        <where>
+            <if test="name!=null and name!=''">
+                stu_name like "%"#{name}"%"
+            </if>
+        </where>
     </select>
 
 
