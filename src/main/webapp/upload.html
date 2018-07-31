@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=="utf-8">
+
+    <!-- Latest compiled and minified CSS -->
+    <!--<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <!-- Optional theme -->
+    <!--<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">-->
+
+    <script src="node_modules/dropzone/dist/dropzone.js"></script>
+    <script>
+
+    </script>
+
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+        #actions {
+            margin: 2em 0;
+        }
+
+        /* Mimic table appearance */
+        div.table {
+            display: table;
+        }
+
+        div.table .file-row {
+            display: table-row;
+        }
+
+        div.table .file-row > div {
+            display: table-cell;
+            vertical-align: top;
+            border-top: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        div.table .file-row:nth-child(odd) {
+            background: #f9f9f9;
+        }
+
+        /* The total progress gets shown by event listeners */
+        #total-progress {
+            opacity: 0;
+            transition: opacity 0.3s linear;
+        }
+
+        /* Hide the progress bar when finished */
+        #previews .file-row.dz-success .progress {
+            opacity: 0;
+            transition: opacity 0.3s linear;
+        }
+
+        /* Hide the delete button initially */
+        #previews .file-row .delete {
+            display: none;
+        }
+
+        /* Hide the start and cancel buttons and show the delete button */
+
+        #previews .file-row.dz-success .start,
+        #previews .file-row.dz-success .cancel {
+            display: none;
+        }
+
+        #previews .file-row.dz-success .delete {
+            display: block;
+        }
+    </style>
+
+</head>
+<body>
+
+
+<div class="container" id="container">
+
+
+    <div id="actions" class="row">
+
+        <div class="col-lg-7">
+            <!-- The fileinput-button span is used to style the file input field as button -->
+            <span class="btn btn-success fileinput-button">
+            <i class="glyphicon glyphicon-plus"></i>
+            <span>Add files...</span>
+        </span>
+            <button type="submit" class="btn btn-primary start">
+                <i class="glyphicon glyphicon-upload"></i>
+                <span>Start upload</span>
+            </button>
+            <button type="reset" class="btn btn-warning cancel">
+                <i class="glyphicon glyphicon-ban-circle"></i>
+                <span>Cancel upload</span>
+            </button>
+        </div>
+
+        <div class="col-lg-5">
+            <!-- The global file processing state -->
+            <span class="fileupload-process">
+          <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0"
+               aria-valuemax="100" aria-valuenow="0">
+            <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+          </div>
+        </span>
+        </div>
+
+    </div>
+
+
+    <div class="table table-striped files" id="previews">
+
+        <div id="template" class="file-row">
+            <!-- This is used as the file preview template -->
+            <div>
+                <span class="preview"><img data-dz-thumbnail /></span>
+            </div>
+            <div>
+                <p class="name" data-dz-name></p>
+                <strong class="error text-danger" data-dz-errormessage></strong>
+            </div>
+            <div>
+                <p class="size" data-dz-size></p>
+                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                     aria-valuenow="0">
+                    <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-primary start">
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>Start</span>
+                </button>
+                <button data-dz-remove class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancel</span>
+                </button>
+                <button data-dz-remove class="btn btn-danger delete">
+                    <i class="glyphicon glyphicon-trash"></i>
+                    <span>Delete</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<script>
+    // 禁止对所有元素的自动查找:,通过实列化来创建dropzone
+    Dropzone.autoDiscover = false;
+    // Get the template HTML and remove it from the doument
+    var previewNode = document.querySelector("#template");
+    previewNode.id = "";
+    var previewTemplate = previewNode.parentNode.innerHTML; // 创建模板
+    previewNode.parentNode.removeChild(previewNode);  // 删除默认元素
+
+    var myDropzone = new Dropzone("#container", { // Make the whole body a dropzone
+        url: "/api/fileupload", // Set the url
+        paramName: "file",
+        maxFiles: 10,
+        maxFilesize: 5, // 最大5MB
+        // uploadMultiple: true, // 上传多个
+        // acceptedFiles:"", // 检查文件类型
+        //accept:function(){}, // 上传前的判断
+        thumbnailWidth: 80,
+        thumbnailHeight: 80,
+        parallelUploads: 20,  // 要并行处理多少文件上载
+        previewTemplate: previewTemplate, // 上传的预览模板
+        autoQueue: false, // 会自动上传  false 调用 enqueueFile(file)上传
+        previewsContainer: "#previews", // 定义显示文件预览的位置
+        clickable: ".fileinput-button" // 触发上传文件按钮
+    });
+
+    //  将文件添加到列表中时
+    myDropzone.on("addedfile", function (file) {
+        // 绑定模板的按钮事件，
+        file.previewElement.querySelector(".start").onclick = function () {
+            // 重新触发上传操作，并上传到服务器
+            myDropzone.enqueueFile(file);
+        };
+    });
+
+    myDropzone.on("thumbnail", function (file, dataUrl) {
+    });
+
+
+    // 在每个文件发送之前调用。
+    myDropzone.on("sending", function (file) {
+        // Show the total progress bar when upload starts
+        document.querySelector("#total-progress").style.opacity = "1";
+        console.log("send");
+        // And disable the start button
+        file.previewElement.querySelector(".start").setAttribute("disabled", "disabled");
+    });
+
+
+    // 上传的错误信息
+    myDropzone.on("error", function (file, errorMessage, xhr) {
+
+    });
+
+    // 删除图片时候的操作
+    myDropzone.on("removedfile", function (file) {
+        console.log("removedfile");
+    });
+
+
+    // Update the total progress bar
+    // 显示所有文件的整体上载进度 调用总数
+    myDropzone.on("totaluploadprogress", function (progress) {
+        console.log(progress);
+        document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
+    });
+    myDropzone.on("reset", function () {
+
+    });
+
+    // Hide the total progress bar when nothing's uploading anymore
+    // 当队列中的所有文件完成上载时调用。
+    myDropzone.on("queuecomplete", function (progress) {
+        document.querySelector("#total-progress").style.opacity = "0";
+    });
+
+
+    // Setup the buttons for all transfers
+    // The "add files" button doesn't need to be setup because the config
+    // `clickable` has already been specified.
+
+    // 触发上传服务器操作
+    document.querySelector("#actions .start").onclick = function () {
+        myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED));
+    };
+    //
+    document.querySelector("#actions .cancel").onclick = function () {
+        myDropzone.removeAllFiles(true);
+    };
+
+
+    // Now fake the file upload, since GitHub does not handle file uploads
+    // and returns a 404
+
+    var minSteps = 6,
+        maxSteps = 60,
+        timeBetweenSteps = 100,
+        bytesPerStep = 100000;
+
+    // myDropzone.uploadFiles = function(files) {
+    //   var self = this
+    //
+    //   for (var i = 0; i < files.length; i++) {
+    //
+    //     var file = files[i]
+    //     totalSteps = Math.round(Math.min(maxSteps, Math.max(minSteps, file.size / bytesPerStep)))
+    //
+    //     for (var step = 0; step < totalSteps; step++) {
+    //       var duration = timeBetweenSteps * (step + 1)
+    //       setTimeout(function(file, totalSteps, step) {
+    //         return function() {
+    //           file.upload = {
+    //             progress: 100 * (step + 1) / totalSteps,
+    //             total: file.size,
+    //             bytesSent: (step + 1) * file.size / totalSteps
+    //           }
+    //
+    //           self.emit('uploadprogress', file, file.upload.progress, file.upload.bytesSent)
+    //           if (file.upload.progress == 100) {
+    //             file.status = Dropzone.SUCCESS
+    //             self.emit("success", file, 'success', null)
+    //             self.emit("complete", file)
+    //             self.processQueue()
+    //           }
+    //         }
+    //       }(file, totalSteps, step), duration)
+    //     }
+    //   }
+    // }
+
+</script>
+
+</body>
+</html>
