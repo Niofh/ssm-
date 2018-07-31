@@ -7,6 +7,7 @@
 * model 实体类
 * service 业务层
 * controller 控制层
+* filter 过滤器
 * dao 数据库层
 * vo 包装结构
 * task 定时任务的封装
@@ -86,5 +87,8 @@ https://blog.csdn.net/yangshangwei/article/details/77075833  针对controller
 
 #### 分页效果 StudentController
 
-####m mybatis教程(七) 分页教程
+#### mybatis教程(七) 分页教程
 https://blog.csdn.net/yuchao2015/article/details/55001182
+
+####  @ResponseBody返回字符串乱码解决
+@RequestMapping(value = "/xxx", produces = "application/json; charset=utf-8")

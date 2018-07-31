@@ -8,9 +8,7 @@
 
     <display-name>ssm template</display-name>
 
-    <welcome-file-list>
-        <welcome-file>/</welcome-file>
-    </welcome-file-list>
+
 
 
     <!-- log4j2-begin -->
@@ -60,6 +58,19 @@
     </servlet-mapping>
 
 
+    <!-- jsessionid filter -->
+
+    <!--URL www.xxx.com?jsessionidFilter=xxx，把jsessionidFilter的参数去掉，不在网页显示-->
+    <filter>
+        <filter-name>jsessionidFilter</filter-name>
+        <filter-class>com.oufuhua.filter.DisableUrlSessionFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>jsessionidFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
     <!-- 编码过滤器 -->
     <filter>
         <filter-name>encodingFilter</filter-name>
@@ -73,6 +84,26 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+
+    <!--session 过期时间为120分钟-->
+    <session-config>
+        <session-timeout>120</session-timeout>
+    </session-config>
+
+    <welcome-file-list>
+        <welcome-file>/</welcome-file>
+    </welcome-file-list>
+    
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/jsp/404.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/jsp/500.jsp</location>
+    </error-page>
 
     <!--jsp引入公共文件-->
     <jsp-config>

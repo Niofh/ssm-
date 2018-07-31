@@ -5,7 +5,10 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <settings>
+        <!--日志插入-->
         <setting name="logImpl" value="LOG4J2" />
+        <!--将数字库字段 a_b 转化成aB-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
 
     <plugins>
