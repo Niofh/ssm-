@@ -32,18 +32,6 @@
     </bean>
 
 
-    <!-- 配置文件上传类型解析器 multipartResolver-->
-    <!--https://www.cnblogs.com/com-itheima-crazyStone/p/6739862.html 教程-->
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!-- 设置上传文件最大尺寸，单位为B 最大为5M  -->
-        <property name="maxUploadSize" value="5242880"/>
-        <property name="defaultEncoding" value="utf-8"/>
-        <!-- 内存中的最大值 -->
-        <property name="maxInMemorySize" value="40960"/>
-    </bean>
-
-    <!--转换器-->
-    <mvc:annotation-driven conversion-service="conversionService"/>
 
     <!--自定义转换器-->
     <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
@@ -57,6 +45,33 @@
             </list>
         </property>
     </bean>
+
+    <!--转换器-->
+    <mvc:annotation-driven conversion-service="conversionService">
+        <!--中文乱码-->
+        <mvc:message-converters register-defaults="true">
+            <!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 注解请求映射
+            默认是ISO-88859-1，避免乱码这里设置为UTF-8 -->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes" value="text/html;charset=UTF-8" />
+            </bean>
+            <!-- 启动JSON格式的配置,自动将格式转换成JSON格式，不需要其他类 -->
+            <bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes" value="application/json;charset=UTF-8" />
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!-- 配置文件上传类型解析器 multipartResolver-->
+    <!--https://www.cnblogs.com/com-itheima-crazyStone/p/6739862.html 教程-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设置上传文件最大尺寸，单位为B 最大为5M  -->
+        <property name="maxUploadSize" value="5242880"/>
+        <property name="defaultEncoding" value="utf-8"/>
+        <!-- 内存中的最大值 -->
+        <property name="maxInMemorySize" value="40960"/>
+    </bean>
+
 
 
     <!--国际化-->

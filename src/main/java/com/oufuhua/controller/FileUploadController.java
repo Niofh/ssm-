@@ -30,6 +30,11 @@ public class FileUploadController {
     @Value("${config.savePath}")
     private String configSavePath;
 
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    @ResponseBody
+    public String test(){
+        return "哈哈";
+    }
 
 
     @RequestMapping(value = "/api/fileupload", method = RequestMethod.POST)

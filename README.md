@@ -4,6 +4,7 @@
 
 * interceptor 全局拦截器  https://www.cnblogs.com/daimajun/p/7172208.html
 * converter 转换器 接受参数时候的转换  https://www.cnblogs.com/bignew/p/6627658.html
+* common 公共类和方法
 * model 实体类
 * service 业务层
 * controller 控制层
@@ -92,3 +93,6 @@ https://blog.csdn.net/yuchao2015/article/details/55001182
 
 ####  @ResponseBody返回字符串乱码解决
 @RequestMapping(value = "/xxx", produces = "application/json; charset=utf-8")
+
+#### common/BaseEntity  每一个model实体类都要继承基础数据，而且数据库每张表都要定义基础数据
+https://blog.csdn.net/baidu_32682229/article/details/76822826 MySQL--创建时间和更新时间字段
