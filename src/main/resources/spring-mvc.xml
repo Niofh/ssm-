@@ -12,21 +12,7 @@
 
 
     <!-- 开启SpringMVC注解模式 -->
-    <!--转换器-->
-    <mvc:annotation-driven conversion-service="conversionService"/>
-
-    <!--自定义转换器-->
-    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
-        <property name="converters">
-            <list>
-                <!--清除前后空格 -->
-                <bean class="com.oufuhua.converter.TrimConverter"/>
-                <!--日期转换器 -->
-                <bean class="com.oufuhua.converter.DateConverter"/>
-
-            </list>
-        </property>
-    </bean>
+    <!--<mvc:annotation-driven/>-->
 
 
 
@@ -56,7 +42,21 @@
         <property name="maxInMemorySize" value="40960"/>
     </bean>
 
+    <!--转换器-->
+    <mvc:annotation-driven conversion-service="conversionService"/>
 
+    <!--自定义转换器-->
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <!--清除前后空格 -->
+                <bean class="com.oufuhua.converter.TrimConverter"/>
+                <!--日期转换器 -->
+                <bean class="com.oufuhua.converter.DateConverter"/>
+
+            </list>
+        </property>
+    </bean>
 
 
     <!--国际化-->

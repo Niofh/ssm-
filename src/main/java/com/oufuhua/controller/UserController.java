@@ -35,7 +35,6 @@ public class UserController {
         // code 相当于属性key , args：传递参数， 模板：{0}-{1}；示例：{"haha","哦哦"}。
         // defaultMessage：默认语言：英语
         String val = messageSource.getMessage("username", null, "en_Us", locale);
-
         System.out.println(val);
         return "index";
     }

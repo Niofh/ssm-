@@ -30,11 +30,7 @@ public class FileUploadController {
     @Value("${config.savePath}")
     private String configSavePath;
 
-    @RequestMapping(name="/api/test",produces = "application/json; charset=utf-8")
-    @ResponseBody
-    public String test() {
-      return "哈啊哈";
-    }
+
 
     @RequestMapping(value = "/api/fileupload", method = RequestMethod.POST)
     @ResponseBody
