@@ -28,8 +28,8 @@ CREATE TABLE `t_student` (
   `create_user` int(11) DEFAULT NULL COMMENT '创建者',
   `update_user` int(11) DEFAULT NULL COMMENT '修改者',
   `del` smallint(1) DEFAULT '0' COMMENT '0没删除，1已删除',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
