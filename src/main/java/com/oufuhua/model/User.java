@@ -1,6 +1,7 @@
 package com.oufuhua.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.oufuhua.common.orm.BaseEntity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -12,7 +13,7 @@ import java.util.Date;
  */
 
 @JsonInclude(JsonInclude.Include.NON_NULL)  // null值属性不返回出去
-public class User implements Serializable{
+public class User extends BaseEntity implements Serializable{
 
     private static final long serialVersionUID = -6784872932530367108L;
 

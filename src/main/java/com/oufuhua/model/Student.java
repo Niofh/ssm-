@@ -1,8 +1,10 @@
 package com.oufuhua.model;
 
+import com.oufuhua.common.orm.BaseEntity;
+
 import java.io.Serializable;
 
-public class Student implements Serializable {
+public class Student extends BaseEntity implements Serializable {
 
 
     private static final long serialVersionUID = 4846068174194960165L;

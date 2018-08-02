@@ -1,7 +1,7 @@
 package com.oufuhua.controller;
 
 
-import com.oufuhua.model.Pager;
+import com.oufuhua.common.model.Pager;
 import com.oufuhua.model.Student;
 import com.oufuhua.service.StudentServer;
 import org.apache.ibatis.annotations.Param;
@@ -66,12 +66,9 @@ public class StudentController {
 
     @RequestMapping("/studentListPlug")
     @ResponseBody
-    public Pager<Student> getStudentPlug(@Param("pageIndex") Integer pageIndex,
-                                         @Param("pageSize") Integer pageSize,
-                                         @Param("name") String name) {
-        pageIndex = pageIndex == null ? 0 : pageIndex;
-        pageSize = pageSize == null ? 10 : pageSize;
-        return  studentServer.selectStudentPlug(pageIndex, pageSize, name);
+    public Pager<Student> getStudentPlug(Pager<Student> pager,@Param("name") String name) {
+
+        return  studentServer.selectStudentPlug(pager, name);
     }
 
 

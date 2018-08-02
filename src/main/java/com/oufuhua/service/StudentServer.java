@@ -1,8 +1,7 @@
 package com.oufuhua.service;
 
-import com.oufuhua.model.Pager;
+import com.oufuhua.common.model.Pager;
 import com.oufuhua.model.Student;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -26,5 +25,5 @@ public interface StudentServer {
      * @param name 学生名称
      * @return 学生列表
      */
-    public Pager<Student> selectStudentPlug(Integer pageIndex, Integer pageSize, String name);
+    public Pager<Student> selectStudentPlug(Pager<Student> pager, String name);
 }

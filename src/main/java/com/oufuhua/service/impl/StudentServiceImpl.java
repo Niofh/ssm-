@@ -3,7 +3,7 @@ package com.oufuhua.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.oufuhua.dao.StudentDao;
-import com.oufuhua.model.Pager;
+import com.oufuhua.common.model.Pager;
 import com.oufuhua.model.Student;
 import com.oufuhua.service.StudentServer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,23 +34,20 @@ public class StudentServiceImpl implements StudentServer {
     }
 
     @Override
-    public  Pager<Student> selectStudentPlug(Integer pageIndex, Integer pageSize, String name) {
+    public  Pager<Student> selectStudentPlug(Pager<Student> pager, String name) {
         //设置分页条件，Parameters:pageNum 页码pageSize 每页显示数量count 是否进行count查询
 
-        PageHelper.startPage(pageIndex * pageSize, pageSize, true);
+        PageHelper.startPage(pager.getPageNum(), pager.getPageSize(), true);
+
+        // 获取集合
         List<Student> studentList = studentDao.selectStudentPlug(name);
 
+        // 获取详细信息
         PageInfo<Student> studentPageInfo = new PageInfo<Student>(studentList);
+        pager.setTotalRecord((int) studentPageInfo.getTotal());
+        pager.setDataList(studentList);
+        pager.setTotalPage(studentPageInfo.getPages());
 
-        System.out.println( studentPageInfo);
-
-        Pager<Student> studentPager = new Pager<>();
-        studentPager.setTotalRecord((int) studentPageInfo.getTotal());
-        studentPager.setDataList(studentList);
-        studentPager.setTotalPage(studentPageInfo.getPages());
-        studentPager.setPageIndex(pageIndex);
-        studentPager.setPageSize(pageSize);
-
-        return studentPager;
+        return pager;
     }
 }

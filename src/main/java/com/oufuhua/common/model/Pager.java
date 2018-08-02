@@ -1,22 +1,31 @@
-package com.oufuhua.model;
+package com.oufuhua.common.model;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.io.Serializable;
 import java.util.List;
 
 public class Pager<T> implements Serializable {
     private static final long serialVersionUID = -7248915170131298357L;
 
+    private Integer pageIndex = 0; // 当前第几条数据 默认从0开始
 
-    private Integer pageSize; // 每页显示多少条数据
+    private Integer pageSize = 10; // 每页显示多少条数据
 
-    private Integer pageIndex; // 当前第几条数据
+    private Integer totalRecord = 0; // 一共多少条记录
 
-    private Integer totalRecord; // 一共多少条记录
-
-    private Integer totalPage; // 一共多少页记录
+    private Integer totalPage = 0; // 一共多少页记录
 
     private List<T> dataList;  // 要显示的数据
 
+
+    private String orderByType = "DESC"; //排序方向（降序）
+    private String orderByName = "update_time"; // 排序更新时间
+
+
+    /* 获取分页的开始索引，默认从0开始 */
+    public Integer getPageNum() {
+        return pageIndex * pageSize;
+    }
 
     public Pager() {
     }
@@ -69,6 +78,23 @@ public class Pager<T> implements Serializable {
         this.dataList = dataList;
     }
 
+
+    public String getOrderByType() {
+        return orderByType;
+    }
+
+    public void setOrderByType(String orderByType) {
+        this.orderByType = orderByType;
+    }
+
+    public String getOrderByName() {
+        return orderByName;
+    }
+
+    public void setOrderByName(String orderByName) {
+        this.orderByName = orderByName;
+    }
+
     @Override
     public String toString() {
         return "Pager{" +
@@ -77,6 +103,8 @@ public class Pager<T> implements Serializable {
                 ", totalRecord=" + totalRecord +
                 ", totalPage=" + totalPage +
                 ", dataList=" + dataList +
+                ", orderByType='" + orderByType + '\'' +
+                ", orderByName='" + orderByName + '\'' +
                 '}';
     }
 }
