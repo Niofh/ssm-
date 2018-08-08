@@ -9,13 +9,16 @@
 * service 业务层
 * controller 控制层
 * filter 过滤器
-* dao 数据库层
-* vo 包装结构
+* dao 数据库层 
+* vo 值对象   与form表单的属性一直
+* dto 数据传输对象 用于给dao做参数
 * task 定时任务的封装
 
 ##### mapper 与dao名字要一样，自动映射，实现类不用写
 * mybatis  https://blog.csdn.net/zjf280441589/article/details/50760236
 
+##### vo,dto,dao之间的关系
+* https://blog.csdn.net/wangxin1982314/article/details/51954264
 
 ##### 对象合并BeanUtils.copyProperties，但是有个缺点null也一起合并进来
 BeanUtils.copyProperties(oldBean,newBean);
